@@ -22,7 +22,6 @@ const SECURITY_HEADERS = [
     value: "max-age=63072000; includeSubDomains; preload",
   },
   { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     // Microphone is allowed for same-origin (`self`) so the inbox
@@ -53,7 +52,7 @@ const SECURITY_HEADERS = [
       // Supabase REST + realtime (WSS). All Meta API calls happen
       // server-side, so graph.facebook.com does not belong here.
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co",
-      "frame-ancestors 'none'",
+      "frame-ancestors 'self' https://*.allycare.app https://allycare.app https://smart-control-dashboard.vercel.app https://www.allycare.app",
       "base-uri 'self'",
       "form-action 'self'",
     ].join("; "),
@@ -61,6 +60,7 @@ const SECURITY_HEADERS = [
 ] as const;
 
 const nextConfig: NextConfig = {
+  basePath: "/admin",
   /**
    * Cache-Control policy.
    *
