@@ -61,6 +61,7 @@ const SECURITY_HEADERS = [
 
 const nextConfig: NextConfig = {
   basePath: "/admin",
+  skipTrailingSlashRedirect: true,
   /**
    * Cache-Control policy.
    *
